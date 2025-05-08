@@ -39,7 +39,7 @@ const HeroSection = () => {
     },
   };
   
-  const strongWordVariants = {
+  const glowWordVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -51,6 +51,7 @@ const HeroSection = () => {
   return (
     <section className="min-h-screen flex items-center justify-center pt-20 relative">
       <div className="absolute top-0 right-0 w-full h-full z-[-1] overflow-hidden">
+        {/* Enhanced animated background elements */}
         <motion.div 
           className="absolute top-0 right-0 w-1/2 h-1/2 bg-opsbridge-navy opacity-10 blur-[100px] rounded-full"
           animate={{ 
@@ -76,29 +77,29 @@ const HeroSection = () => {
           }}
         />
         
-        <motion.div 
-          className="absolute top-[30%] left-[20%] w-4 h-4 rounded-full bg-opsbridge-blue/20"
-          animate={{ 
-            y: [0, -30, 0],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        />
-        
-        <motion.div 
-          className="absolute bottom-[30%] right-[20%] w-6 h-6 rounded-full bg-opsbridge-green/20"
-          animate={{ 
-            y: [0, 40, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        />
+        {/* Additional floating particles */}
+        {[...Array(6)].map((_, index) => (
+          <motion.div 
+            key={index}
+            className={`absolute rounded-full bg-opsbridge-blue/20 ${
+              index % 2 === 0 ? 'w-4 h-4' : 'w-6 h-6'
+            }`}
+            style={{
+              top: `${20 + (index * 15)}%`,
+              left: `${10 + (index * 15)}%`,
+            }}
+            animate={{ 
+              y: [0, index % 2 === 0 ? -30 : -40, 0],
+              opacity: [0.1, 0.3, 0.1]
+            }}
+            transition={{
+              duration: 6 + index,
+              repeat: Infinity,
+              repeatType: "reverse",
+              delay: index * 0.5
+            }}
+          />
+        ))}
       </div>
       
       <div className="container mx-auto px-4">
@@ -109,13 +110,13 @@ const HeroSection = () => {
             animate={controls}
             className="mb-6"
           >
-            <motion.h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+            <motion.h1 className="text-5xl md:text-7xl font-bold mb-4 leading-tight tracking-wide">
               <motion.span variants={wordVariants} className="inline-block mr-2">Launch</motion.span> 
               <motion.span 
-                variants={strongWordVariants} 
-                className="inline-block mr-2 relative"
+                variants={glowWordVariants} 
+                className="inline-block mr-2 relative text-opsbridge-blue"
                 animate={{
-                  textShadow: ['0 0 5px rgba(45, 156, 219, 0)', '0 0 15px rgba(45, 156, 219, 0.5)', '0 0 5px rgba(45, 156, 219, 0)']
+                  textShadow: ['0 0 5px rgba(45, 156, 219, 0)', '0 0 15px rgba(45, 156, 219, 0.8)', '0 0 5px rgba(45, 156, 219, 0)']
                 }}
                 transition={{
                   duration: 2,
@@ -125,12 +126,13 @@ const HeroSection = () => {
               >
                 Strong.
               </motion.span> 
-              <motion.span variants={wordVariants} className="inline-block mr-2 text-opsbridge-blue glow-text">Scale</motion.span> 
+              <br className="hidden sm:block" />
+              <motion.span variants={wordVariants} className="inline-block mr-2">Scale</motion.span> 
               <motion.span 
-                variants={strongWordVariants} 
-                className="inline-block relative"
+                variants={glowWordVariants} 
+                className="inline-block relative text-opsbridge-blue"
                 animate={{
-                  textShadow: ['0 0 5px rgba(45, 156, 219, 0)', '0 0 15px rgba(45, 156, 219, 0.5)', '0 0 5px rgba(45, 156, 219, 0)']
+                  textShadow: ['0 0 5px rgba(45, 156, 219, 0)', '0 0 15px rgba(45, 156, 219, 0.8)', '0 0 5px rgba(45, 156, 219, 0)']
                 }}
                 transition={{
                   duration: 2,
