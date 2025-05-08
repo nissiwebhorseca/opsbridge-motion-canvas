@@ -40,8 +40,16 @@ const ServicesSection = () => {
   };
   
   const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    show: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
+    hidden: { y: 50, opacity: 0 },
+    show: { 
+      y: 0, 
+      opacity: 1, 
+      transition: { 
+        type: "spring", 
+        damping: 15, 
+        stiffness: 100 
+      } 
+    }
   };
   
   return (
@@ -75,14 +83,37 @@ const ServicesSection = () => {
           {services.map((service) => (
             <motion.div 
               key={service.id} 
-              className="card flex flex-col p-8 h-full"
+              className="enhanced-card flex flex-col p-8 h-full group"
               variants={itemVariants}
+              whileHover={{ y: -8 }}
             >
-              <div className="mb-4 flex justify-center items-center">
-                {service.icon}
-              </div>
+              <motion.div 
+                className="mb-4 flex justify-center items-center"
+                whileHover={{ rotate: [0, -10, 10, -5, 0] }}
+                transition={{ duration: 0.5 }}
+              >
+                <motion.div
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 300,
+                    damping: 10
+                  }}
+                >
+                  {service.icon}
+                </motion.div>
+              </motion.div>
+              
               <h3 className="text-xl font-bold mb-4 text-white">{service.title}</h3>
               <p className="text-gray-300 flex-grow">{service.description}</p>
+              
+              <motion.div 
+                className="w-0 h-0.5 bg-opsbridge-blue mt-4"
+                initial={{ width: 0 }}
+                whileHover={{ width: "100%" }}
+                transition={{ duration: 0.3 }}
+              />
             </motion.div>
           ))}
         </motion.div>
