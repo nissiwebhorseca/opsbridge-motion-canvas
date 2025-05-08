@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 // Component imports
 import Navbar from "@/components/Navbar";
@@ -17,7 +17,6 @@ import MobileMenu from "@/components/MobileMenu";
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
-  const { scrollY } = useScroll();
   
   // Refs for each section
   const servicesRef = useRef(null);
@@ -29,37 +28,6 @@ const Index = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  
-  // Enhanced scroll-triggered animations using framer-motion's useTransform
-  const servicesOpacity = useTransform(
-    scrollY, 
-    [300, 500, 1100, 1300], 
-    [0, 1, 1, 0]
-  );
-  
-  const whyUsOpacity = useTransform(
-    scrollY, 
-    [800, 1000, 1600, 1800], 
-    [0, 1, 1, 0]
-  );
-  
-  const clientsOpacity = useTransform(
-    scrollY, 
-    [1300, 1500, 2100, 2300], 
-    [0, 1, 1, 0]
-  );
-  
-  const howItWorksOpacity = useTransform(
-    scrollY, 
-    [1800, 2000, 2600, 2800], 
-    [0, 1, 1, 0]
-  );
-  
-  const contactOpacity = useTransform(
-    scrollY, 
-    [2300, 2500], 
-    [0, 1]
-  );
   
   // Track scroll position for animations and active section
   useEffect(() => {
@@ -188,26 +156,11 @@ const Index = () => {
         transition={{ duration: 0.5 }}
       >
         <HeroSection />
-        
-        <motion.div style={{ opacity: servicesOpacity }} ref={servicesRef}>
-          <ServicesSection />
-        </motion.div>
-        
-        <motion.div style={{ opacity: whyUsOpacity }} ref={whyUsRef}>
-          <WhyChooseUs />
-        </motion.div>
-        
-        <motion.div style={{ opacity: clientsOpacity }} ref={clientsRef}>
-          <ClientsSection />
-        </motion.div>
-        
-        <motion.div style={{ opacity: howItWorksOpacity }} ref={howItWorksRef}>
-          <HowItWorks />
-        </motion.div>
-        
-        <motion.div style={{ opacity: contactOpacity }} ref={contactRef}>
-          <ContactSection />
-        </motion.div>
+        <ServicesSection />
+        <WhyChooseUs />
+        <ClientsSection />
+        <HowItWorks />
+        <ContactSection />
       </motion.main>
       
       <Footer />
@@ -216,3 +169,4 @@ const Index = () => {
 };
 
 export default Index;
+
