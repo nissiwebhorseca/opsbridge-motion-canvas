@@ -1,12 +1,40 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect, useRef, useState } from "react";
+import { Book, Calendar, Mail, Phone, Users } from "lucide-react";
+import { motion, useAnimation, useInView } from "framer-motion";
+
+// Component imports
+import Navbar from "@/components/Navbar";
+import ParticleBackground from "@/components/ParticleBackground";
+import HeroSection from "@/components/HeroSection";
+import ServicesSection from "@/components/ServicesSection";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import ClientsSection from "@/components/ClientsSection";
+import HowItWorks from "@/components/HowItWorks";
+import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
+import MobileMenu from "@/components/MobileMenu";
 
 const Index = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen overflow-x-hidden">
+      <ParticleBackground />
+      <Navbar toggleMenu={toggleMenu} />
+      {isMenuOpen && <MobileMenu isOpen={isMenuOpen} onClose={toggleMenu} />}
+      
+      <HeroSection />
+      <ServicesSection />
+      <WhyChooseUs />
+      <ClientsSection />
+      <HowItWorks />
+      <ContactSection />
+      <Footer />
     </div>
   );
 };
