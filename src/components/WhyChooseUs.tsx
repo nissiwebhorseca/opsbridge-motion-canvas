@@ -32,7 +32,17 @@ const WhyChooseUs = () => {
   
   return (
     <section id="why-us" className="py-20 md:py-28 relative bg-opsbridge-navy/30" ref={ref}>
-      <div className="container mx-auto px-4">
+      {/* Background image with overlay for texture */}
+      <div className="absolute inset-0 z-0 opacity-20">
+        <div className="absolute inset-0 bg-gradient-to-r from-opsbridge-navy to-opsbridge-background z-10"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+          alt="Professional workspace"
+          className="object-cover w-full h-full"
+        />
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <motion.h2 

@@ -62,7 +62,8 @@ const Navbar = ({ toggleMenu }: NavbarProps) => {
       initial={{ backgroundColor: 'rgba(13, 17, 23, 0)' }}
       animate={{ 
         backgroundColor: scrolled ? 'rgba(13, 17, 23, 0.9)' : 'rgba(13, 17, 23, 0)',
-        backdropFilter: scrolled ? 'blur(10px)' : 'blur(0px)'
+        backdropFilter: scrolled ? 'blur(10px)' : 'blur(0px)',
+        boxShadow: scrolled ? '0 4px 20px rgba(0, 0, 0, 0.2)' : 'none'
       }}
     >
       <div className="container flex justify-between items-center py-4">

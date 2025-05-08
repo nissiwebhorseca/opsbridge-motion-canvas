@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Rocket, TrendingUp, Code } from 'lucide-react';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const ServicesSection = () => {
   const ref = useRef(null);
@@ -12,19 +13,22 @@ const ServicesSection = () => {
       id: 1,
       icon: <Rocket className="h-10 w-10 text-opsbridge-blue" />,
       title: "Startup Enablement",
-      description: "We help founders and new teams launch strong with company setup support, workflow design, executive assistance, and documentation."
+      description: "We help founders and new teams launch strong with company setup support, workflow design, executive assistance, and documentation.",
+      image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     },
     {
       id: 2,
       icon: <TrendingUp className="h-10 w-10 text-opsbridge-green" />,
       title: "SME Scaling Support",
-      description: "We help small businesses scale operations with remote admin teams, system optimization, SOP design, and flexible back office support."
+      description: "We help small businesses scale operations with remote admin teams, system optimization, SOP design, and flexible back office support.",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     },
     {
       id: 3,
       icon: <Code className="h-10 w-10 text-opsbridge-blue" />,
       title: "Tech & Back Office Services",
-      description: "We support digital infrastructure with cloud tool setup, knowledge base management, helpdesk triage, and operations mapping."
+      description: "We support digital infrastructure with cloud tool setup, knowledge base management, helpdesk triage, and operations mapping.",
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     }
   ];
   
@@ -83,37 +87,50 @@ const ServicesSection = () => {
           {services.map((service) => (
             <motion.div 
               key={service.id} 
-              className="enhanced-card flex flex-col p-8 h-full group"
+              className="enhanced-card flex flex-col p-0 h-full group overflow-hidden"
               variants={itemVariants}
               whileHover={{ y: -8 }}
             >
-              <motion.div 
-                className="mb-4 flex justify-center items-center"
-                whileHover={{ rotate: [0, -10, 10, -5, 0] }}
-                transition={{ duration: 0.5 }}
-              >
-                <motion.div
-                  initial={{ scale: 1 }}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 300,
-                    damping: 10
-                  }}
+              <div className="relative w-full h-48 overflow-hidden">
+                <AspectRatio ratio={16/9}>
+                  <img 
+                    src={service.image}
+                    alt={service.title}
+                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-opsbridge-navy via-opsbridge-navy/50 to-transparent"></div>
+                </AspectRatio>
+              </div>
+              
+              <div className="p-6 flex flex-col flex-grow">
+                <motion.div 
+                  className="mb-4 flex justify-center items-center"
+                  whileHover={{ rotate: [0, -10, 10, -5, 0] }}
+                  transition={{ duration: 0.5 }}
                 >
-                  {service.icon}
+                  <motion.div
+                    initial={{ scale: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 300,
+                      damping: 10
+                    }}
+                  >
+                    {service.icon}
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-              
-              <h3 className="text-xl font-bold mb-4 text-white">{service.title}</h3>
-              <p className="text-gray-300 flex-grow">{service.description}</p>
-              
-              <motion.div 
-                className="w-0 h-0.5 bg-opsbridge-blue mt-4"
-                initial={{ width: 0 }}
-                whileHover={{ width: "100%" }}
-                transition={{ duration: 0.3 }}
-              />
+                
+                <h3 className="text-xl font-bold mb-4 text-white">{service.title}</h3>
+                <p className="text-gray-300 flex-grow">{service.description}</p>
+                
+                <motion.div 
+                  className="w-0 h-0.5 bg-opsbridge-blue mt-4"
+                  initial={{ width: 0 }}
+                  whileHover={{ width: "100%" }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
             </motion.div>
           ))}
         </motion.div>

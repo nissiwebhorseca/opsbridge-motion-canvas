@@ -49,7 +49,17 @@ const HeroSection = () => {
   };
   
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 relative">
+    <section className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+      {/* Full-bleed background image with overlay */}
+      <div className="absolute inset-0 z-[-2]">
+        <div className="absolute inset-0 bg-gradient-to-b from-opsbridge-background/90 via-opsbridge-background/70 to-opsbridge-background/90 z-10"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+          alt="Team collaborating in modern workspace"
+          className="object-cover w-full h-full"
+        />
+      </div>
+
       <div className="absolute top-0 right-0 w-full h-full z-[-1] overflow-hidden">
         {/* Enhanced animated background elements */}
         <motion.div 
@@ -102,7 +112,7 @@ const HeroSection = () => {
         ))}
       </div>
       
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 z-10">
         <div className="max-w-3xl mx-auto text-center" ref={ref}>
           <motion.div
             variants={headlineVariants}
